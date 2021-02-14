@@ -96,5 +96,5 @@ function typewriter() {
   }
 }
 
-setTimeout("typewriter()", 3186);
+setTimeout("typewriter()", 3200);
 // typewriter();
