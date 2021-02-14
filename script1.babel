@@ -1,0 +1,54 @@
+// set up text to print, each item in array is new line
+var aText = new Array(
+    "I know what you are thinking that I have gone crazy.",
+    "Well, I'm not gonna deny it.",
+    "But as you know, lately I don't really have anything to do, so I thought, 'well we can do this.'",
+    "So, here I am.",
+    "Yes, I made you a website for valentine's day. I know its cringe but do I give a fuck?",
+    "No.",
+    "Now that I think about it, I could have done better but ... well, its not like you gave me something, so we are gonna consider it a good gift without any judgements.",
+    "And before you ask, no, I have no idea how I made it, I just copy and pasted it from a fkn lot of different sites and it took me around 3 hours and now I'm wasting my time writing this intro stuff.",
+    "Now click on that button down there which I made using bootstrap, or should I say bootstarp made for me.",
+    "Yeah, ignore that sentence, which I thought was a good joke."
+);
+var iSpeed = 100; // time delay of print out
+var iIndex = 0; // start printing array at this posision
+var iArrLength = aText[0].length; // the length of the text array
+var iScrollAt = 20; // start scrolling up at this many lines
+
+var iTextPos = 0; // initialise text position
+var sContents = ''; // initialise contents variable
+var iRow; // initialise current row
+
+function typewriter() {
+    sContents = ' ';
+    iRow = Math.max(0, iIndex - iScrollAt);
+    var destination = document.getElementById("typedtext");
+
+    while (iRow < iIndex) {
+        sContents += aText[iRow++] + '<br />';
+    }
+    destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + " |";
+    if (iTextPos++ == iArrLength) {
+        iTextPos = 0;
+        iIndex++;
+        if (iIndex != aText.length) {
+            iArrLength = aText[iIndex].length;
+            setTimeout("typewriter()", 500);
+        }
+    } else {
+        setTimeout("typewriter()", iSpeed);
+    }
+
+    if(iIndex == aText.length){
+        document.getElementById('lovemebutton').disabled = false;
+    }
+}
+
+
+typewriter();
+
+
+function gotoLetter(){
+    location.href = 'home.html';
+}
